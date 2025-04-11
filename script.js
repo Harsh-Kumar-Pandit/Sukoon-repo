@@ -122,7 +122,7 @@ async function main() {
     //Get the list of all song
     await getSongs("/songs/Arijit");
     // console.log(songs)
-    // playMusic(songs[0], true)
+    playMusic(songs[0], true)
 
     //Display all the albums on the page
     // displayAlbums()
@@ -211,7 +211,4 @@ async function main() {
 
 }
 
-document.getElementById("startBtn").addEventListener("click", async () => {
-    document.getElementById("startBtn").style.display = "none"; // hide the button after click
-    await main(); // now run your player logic
-});
+main()
