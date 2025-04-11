@@ -211,4 +211,7 @@ async function main() {
 
 }
 
-main()
+document.getElementById("startBtn").addEventListener("click", async () => {
+    document.getElementById("startBtn").style.display = "none"; // hide the button after click
+    await main(); // now run your player logic
+});
