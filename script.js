@@ -122,7 +122,7 @@ async function main() {
     //Get the list of all song
     await getSongs("/songs/Arijit");
     // console.log(songs)
-    playMusic(songs[0], true)
+    // playMusic(songs[0], true)
 
     //Display all the albums on the page
     // displayAlbums()
