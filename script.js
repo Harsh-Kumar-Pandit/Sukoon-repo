@@ -16,14 +16,17 @@ console.log(formatTime(duration)); // Output: "2:05"
 
 async function getSongs(folder) {
     currFolder = folder;
-    let a = await fetch(`http://127.0.0.1:5500/Sukoon/${folder}/`)
+    let a = await fetch(`http://127.0.0.1:5500/${folder}/`)
     let response = await a.text();
     let div = document.createElement("div");
+    // console.log(div);
     div.innerHTML = response;
     let as = div.getElementsByTagName("a")
+    console.log(as)
     songs = []
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
+        console.log(as)
         if (element.href.endsWith(".mp3")) {
             songs.push(element.href.split(`/${folder}/`)[1])//split by songs at index 1
         }
@@ -59,7 +62,7 @@ async function getSongs(folder) {
 
 const playMusic = (track, pause = false) => {
     // let audio = new Audio("/Spotify/songs/" + track)
-    currentSong.src = `/Sukoon/${currFolder}/` + track
+    currentSong.src = `/${currFolder}/` + track
     if (!pause) {
         currentSong.play()
         play.src = "hugeicons/pause.svg"
@@ -117,7 +120,7 @@ const playMusic = (track, pause = false) => {
 async function main() {
 
     //Get the list of all song
-    await getSongs("songs/Arijit");
+    await getSongs("/songs/Arijit");
     // console.log(songs)
     playMusic(songs[0], true)
 
