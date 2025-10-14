@@ -120,6 +120,36 @@ body {
     background-color: rgb(123 127 132);
 }
 
+.header h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #092712;
+  text-align: center;
+  text-shadow:
+    0 0 5px #b8ffd4,
+    0 0 10px #6ef3a5,
+    0 0 20px #6ef3a5;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #b8ffd4,
+      0 0 10px #6ef3a5,
+      0 0 20px #6ef3a5;
+  }
+  50% {
+    text-shadow:
+      0 0 10px #ffffff,
+      0 0 25px #8effc0,
+      0 0 40px #00ff99;
+  }
+}
+
+
+
 .header > * {
     padding: 17px;
 }
@@ -128,16 +158,16 @@ body {
     padding: 16px;
 }
 .spotifyPlaylists h1{
-    padding: 16px;
+    padding: 10px;
 }
 
 .cardContainer {
     margin: 30px;
     display: flex;
-    gap: 10px;
+    gap: 24px;
     flex-wrap: wrap;
     overflow-y: auto;
-    max-height: 58vh;
+    max-height: 52vh;
 }
 .card {
     width: 200px;
@@ -181,7 +211,7 @@ body {
 }
 
 .buttons > * {
-    margin: 0 12px;
+    margin: 7px 12px;
 }
 .signupbtn:hover {
     font-size: 14px;
@@ -274,7 +304,7 @@ body {
 .playnow span {
     font-size: 10px;
     width: 60px;
-    padding: 12px;
+    padding: 7px;
 }
 
 .logo{
@@ -360,12 +390,12 @@ body {
     }
 
     .playbar {
-        width: calc(100vw - 60px);
+        width: calc(100vw - 45px);
     }
 
 
     .seekbar {
-        width: calc(100vw - 70px);
+        width: calc(100vw - 55px);
     }
     .hamburger {
         display: block;
@@ -421,3 +451,296 @@ body {
         max-height: 54vh;
     }
 }
+
+/* ADD THIS CODE TO THE END OF YOUR style.css FILE */
+
+/* This fixes the position of the "Add Song" button */
+.addSongBtn {
+  background-color: #1db954; 
+  color: white; 
+  border: none;
+  border-radius: 8px; 
+  padding: 8px 12px; 
+  cursor: pointer;
+  font-weight: bold; 
+  transition: background 0.3s;
+  margin-left: 20px; /* This is the key line that pushes the button to the right */
+}
+.addSongBtn:hover { 
+  background-color: #17a84b; 
+}
+
+/* Styles for the "Add Song" popup window */
+.addSongPopup {
+  display: none; 
+  position: fixed; 
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  background-color: #1f1f1f;
+  color: white; 
+  padding: 20px; 
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000; 
+  z-index: 10; 
+  width: 350px;
+}
+.popup-buttons { 
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: 10px; 
+}
+.popup-buttons button { 
+  padding: 8px 16px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-weight: bold; 
+}
+#cancelSongBtn { 
+  background-color: #555; 
+  color: white; 
+}
+
+/* Styles for the search bar and results */
+.search-container { 
+  display: flex; 
+  gap: 7px; 
+  margin-bottom: 10px; 
+  margin-top: 20px;
+}
+#searchInput { 
+  flex-grow: 1; 
+  border: 1px solid #555; 
+  background-color: #333; 
+  color: white; 
+  border-radius: 5px; 
+  padding: 8px; 
+}
+#searchBtn { 
+  background-color: #1db954; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 8px 12px; 
+  cursor: pointer; 
+}
+.search-results { 
+  max-height: 250px; 
+  overflow-y: auto; 
+  border: 1px solid #444; 
+  border-radius: 5px; 
+}
+.result-item { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  padding: 8px; 
+  cursor: pointer; 
+  border-bottom: 1px solid #333; 
+}
+.result-item:last-child { 
+  border-bottom: none; 
+}
+.result-item:hover { 
+  background-color: #3a3a3a; 
+}
+.result-item img { 
+  width: 50px; 
+  height: 50px; 
+  border-radius: 4px; 
+  object-fit: cover; 
+}
+.result-item span { 
+  font-size: 14px; 
+}
+
+/* Styles for the sliding/marquee song title */
+.songinfo { 
+  white-space: nowrap; 
+  overflow: hidden; 
+  box-sizing: border-box; 
+}
+.songinfo span { 
+  display: inline-block; 
+  padding-left: 100%; 
+  animation: marquee 15s linear infinite; 
+  animation-play-state: paused; 
+}
+.songinfo.scrolling-text span { 
+  animation-play-state: running; 
+}
+@keyframes marquee { 
+  0% { transform: translateX(0); } 
+  100% { transform: translateX(-100%); } 
+}
+
+/* Styles for the delete button in the playlist */
+.songList ul li { 
+  position: relative; 
+}
+.deleteSong { 
+  position: absolute; 
+  right: 10px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  padding: 5px; 
+  cursor: pointer; 
+}
+.deleteSong img { 
+  width: 20px; 
+  height: 20px; 
+}
+/* ADD THIS TO THE END OF style.css */
+
+.playnow {
+    /* Adds some space between the "Play now" text/icon and the delete button */
+    margin-right: 20px;
+}
+
+
+
+/* ADD THIS TO THE END OF YOUR style.css FILE */
+
+/* Filter Container Styles */
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-container label {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.filter-container select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    color: white;
+    border: 2px solid #333;
+    cursor: pointer;
+    min-width: 200px;
+    font-family: 'WinkySans', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.filter-container select:hover {
+    border-color: #1db954;
+    background-color: #252525;
+}
+
+.filter-container select:focus {
+    outline: none;
+    border-color: #1db954;
+    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.1);
+}
+
+.filter-container input[type="text"] {
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    color: white;
+    border: 2px solid #333;
+    flex: 1;
+    min-width: 200px;
+    max-width: 40%;
+    font-family: 'WinkySans', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.filter-container input[type="text"]:focus {
+    outline: none;
+    border-color: #1db954;
+    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.1);
+}
+
+.filter-container input[type="text"]::placeholder {
+    color: #888;
+}
+
+/* Responsive filter styles */
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .filter-container select,
+    .filter-container input[type="text"] {
+        width: 96%;
+        max-width: none;
+    }
+}
+/* Styling for the Filter Button behavior on Mobile */
+.filter-container {
+    /* Ensure flex is applied for desktop structure */
+    display: flex; 
+    gap: 15px; /* Spacing for desktop elements */
+    align-items: center;
+    padding: 10px 0; /* Add some padding around the filter controls */
+}
+
+@media (max-width: 826px) {
+    /* 1. Reset .filter-container to be the mobile button holder */
+    .filter-container {
+        display: block; /* Stack elements vertically in the filter div */
+        padding: 0;
+        cursor: pointer;
+        background-color: #242424; /* Darker background for the button */
+        border-radius: 6px;
+        margin-bottom: 10px; /* Space below the button */
+        color: white; /* Text color */
+        position: relative; /* For the chevron icon */
+    }
+
+    .filter-container h1 {
+        display: none;
+    }
+    /* 2. Style the visible "Filter by" text as a button */
+    .filter-container label {
+        display: block; /* Make the label take full width */
+        padding: 10px 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9em;
+    }
+
+    /* 3. Hide the actual search and select controls by default */
+    .filter-container select,
+    .filter-container input {
+        display: none !important; /* Hide controls by default */
+        width: calc(100% - 30px); /* Full width with padding */
+        margin: 0 15px 15px 15px; /* Add margin/padding to controls when visible */
+        box-sizing: border-box;
+    }
+    
+    /* 4. Style for when the filter is open */
+    .filter-container.open select,
+    .filter-container.open input {
+        display: block !important; /* Show controls when 'open' class is applied */
+    }
+    
+    /* 5. Add a subtle visual indicator (like a chevron) to the button */
+    .filter-container label::after {
+        content: '▼'; /* Down arrow */
+        position: absolute;
+        right: 15px;
+        font-size: 0.7em;
+        transition: transform 0.3s;
+    }
+
+    .filter-container.open label::after {
+        content: '▲'; /* Up arrow when open */
+    }
+}
+
