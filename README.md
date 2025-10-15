@@ -1,4 +1,4 @@
-<img width="1920" height="868" alt="{39DEC08D-FFD6-4F58-B8D9-CD24B8FA92C6}" src="https://github.com/user-attachments/assets/a9fa4fcf-0a61-478e-a157-7ccc9c5920a6" /># 🎵 Sukoon - Your Web-Based Music Player 🎧
+# 🎵 Sukoon - Your Web-Based Music Player 🎧
 
 #🎵 Sukoon -
 > A calm and simple music player that brings your favorite tunes to your browser.
@@ -104,10 +104,10 @@ sukoon/
 Here’s a look at the **Sukoon Music Player** interface 🎧
 
 ### 🎵 Main Interface
-![Sukoon UI – Home](./assets/ui-1.png)
+![Sukoon UI – Home](./assets/ui1.png)
 
 ### 🎶 Add new songs / Now Playing
-![Sukoon UI – Player](./assets/ui-2.png)
+![Sukoon UI – Player](./assets/ui2.png)
 
 ## 🤝 Contributing
 
