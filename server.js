@@ -14,16 +14,9 @@ const serveIndex = require('serve-index');
 
 app.use(cors());
 
-// =========================================================
-// CRITICAL: STATIC FILE SERVING
-// This line tells Express to serve static files 
-// (index.html, script.js, style.css, etc.) 
-// from the same directory where server.js is located.
-// =========================================================
 app.use(express.static(__dirname)); 
 
 app.use('/songs', serveIndex(path.join(__dirname, 'songs'), {'icons': true}));
-
 
 // ROUTE 1: Search for videos (API endpoint)
 app.get('/search', async (req, res) => {
@@ -81,12 +74,6 @@ app.get('/stream', (req, res) => {
         }
     });
 });
-
-// =========================================================
-// This route now serves the frontend files, so we can remove
-// the separate redundant root route from the previous steps.
-// =========================================================
-
 
 app.listen(PORT, HOST, () => {
     console.log(`Full-Stack Sukoon Server running on http://${HOST}:${PORT}`);
