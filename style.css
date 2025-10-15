@@ -28,16 +28,16 @@ body {
   }
   
   ::-webkit-scrollbar-track {
-    background: #1f1f1f;  /* dark gray track */
+    background: #1f1f1f; 
   }
   
   ::-webkit-scrollbar-thumb {
-    background: #888;     /* medium gray thumb */
+    background: #888;     
     border-radius: 6px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: #aaa;     /* lighter gray on hover */
+    background: #aaa;     
   }
   
 
@@ -452,9 +452,6 @@ body {
     }
 }
 
-/* ADD THIS CODE TO THE END OF YOUR style.css FILE */
-
-/* This fixes the position of the "Add Song" button */
 .addSongBtn {
   background-color: #1db954; 
   color: white; 
@@ -464,13 +461,12 @@ body {
   cursor: pointer;
   font-weight: bold; 
   transition: background 0.3s;
-  margin-left: 20px; /* This is the key line that pushes the button to the right */
+  margin-left: 20px;
 }
 .addSongBtn:hover { 
   background-color: #17a84b; 
 }
 
-/* Styles for the "Add Song" popup window */
 .addSongPopup {
   display: none; 
   position: fixed; 
@@ -502,7 +498,6 @@ body {
   color: white; 
 }
 
-/* Styles for the search bar and results */
 .search-container { 
   display: flex; 
   gap: 7px; 
@@ -555,7 +550,6 @@ body {
   font-size: 14px; 
 }
 
-/* Styles for the sliding/marquee song title */
 .songinfo { 
   white-space: nowrap; 
   overflow: hidden; 
@@ -575,7 +569,6 @@ body {
   100% { transform: translateX(-100%); } 
 }
 
-/* Styles for the delete button in the playlist */
 .songList ul li { 
   position: relative; 
 }
@@ -591,18 +584,12 @@ body {
   width: 20px; 
   height: 20px; 
 }
-/* ADD THIS TO THE END OF style.css */
 
 .playnow {
-    /* Adds some space between the "Play now" text/icon and the delete button */
+ 
     margin-right: 20px;
 }
 
-
-
-/* ADD THIS TO THE END OF YOUR style.css FILE */
-
-/* Filter Container Styles */
 .filter-container {
     display: flex;
     align-items: center;
@@ -681,56 +668,52 @@ body {
         max-width: none;
     }
 }
-/* Styling for the Filter Button behavior on Mobile */
+
 .filter-container {
-    /* Ensure flex is applied for desktop structure */
     display: flex; 
-    gap: 15px; /* Spacing for desktop elements */
+    gap: 15px; 
     align-items: center;
-    padding: 10px 0; /* Add some padding around the filter controls */
+    padding: 10px 0;
 }
 
 @media (max-width: 826px) {
-    /* 1. Reset .filter-container to be the mobile button holder */
+
     .filter-container {
-        display: block; /* Stack elements vertically in the filter div */
+        display: block; 
         padding: 0;
         cursor: pointer;
-        background-color: #242424; /* Darker background for the button */
+        background-color: #242424; 
         border-radius: 6px;
-        margin-bottom: 10px; /* Space below the button */
-        color: white; /* Text color */
-        position: relative; /* For the chevron icon */
+        margin-bottom: 10px; 
+        color: white; 
+        position: relative; 
     }
 
     .filter-container h1 {
         display: none;
     }
-    /* 2. Style the visible "Filter by" text as a button */
+
     .filter-container label {
-        display: block; /* Make the label take full width */
+        display: block; 
         padding: 10px 15px;
         font-weight: bold;
         text-transform: uppercase;
         font-size: 0.9em;
     }
 
-    /* 3. Hide the actual search and select controls by default */
     .filter-container select,
     .filter-container input {
-        display: none !important; /* Hide controls by default */
-        width: calc(100% - 30px); /* Full width with padding */
-        margin: 0 15px 15px 15px; /* Add margin/padding to controls when visible */
+        display: none !important; 
+        width: calc(100% - 30px); 
+        margin: 0 15px 15px 15px; 
         box-sizing: border-box;
     }
-    
-    /* 4. Style for when the filter is open */
+
     .filter-container.open select,
     .filter-container.open input {
-        display: block !important; /* Show controls when 'open' class is applied */
-    }
-    
-    /* 5. Add a subtle visual indicator (like a chevron) to the button */
+        display: block !important; 
+    } 
+
     .filter-container label::after {
         content: '▼'; /* Down arrow */
         position: absolute;
@@ -740,6 +723,6 @@ body {
     }
 
     .filter-container.open label::after {
-        content: '▲'; /* Up arrow when open */
+        content: '▲'; 
     }
 }
