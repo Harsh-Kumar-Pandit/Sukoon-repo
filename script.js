@@ -205,18 +205,13 @@ async function main() {
     });
     document.querySelector(".hamburger").addEventListener("click", () => { document.querySelector(".left").style.left = "0"; });
     document.querySelector(".close").addEventListener("click", () => { document.querySelector(".left").style.left = "-120%"; });
-    // ... (rest of the main function code above)
-
-    // ... (existing listeners for play, timeupdate, seekbar, hamburger, close, volume)
 
     previous.addEventListener("click", () => {
         const currentSongTitle = document.querySelector(".songinfo span").textContent.trim();
         const listItems = Array.from(document.querySelectorAll(".songList ul li"));
         let currentIndex = -1;
 
-        // Find the index of the currently playing song in the displayed list
         for (let i = 0; i < listItems.length; i++) {
-            // Compare the currently playing song title with the title in the list item's dataset
             if (listItems[i].dataset.title === currentSongTitle) {
                 currentIndex = i;
                 break;
@@ -224,7 +219,6 @@ async function main() {
         }
 
         if (currentIndex > 0) {
-            // Play the previous song in the list
             const prevItem = listItems[currentIndex - 1];
             const type = prevItem.dataset.type;
             const title = prevItem.dataset.title;
@@ -233,12 +227,10 @@ async function main() {
             if (type === 'youtube') {
                 playYoutubeSong(prevItem.dataset.videoId, title);
             } else {
-                // Update currFolder for regular songs
                 currFolder = folder ? `songs/${folder}` : currFolder; 
                 playMusic(title);
             }
         } else if (listItems.length > 0 && currentIndex === 0) {
-            // Wrap around to the last song
             const lastItem = listItems[listItems.length - 1];
             const type = lastItem.dataset.type;
             const title = lastItem.dataset.title;
@@ -247,7 +239,6 @@ async function main() {
             if (type === 'youtube') {
                 playYoutubeSong(lastItem.dataset.videoId, title);
             } else {
-                // Update currFolder for regular songs
                 currFolder = folder ? `songs/${folder}` : currFolder; 
                 playMusic(title);
             }
@@ -259,10 +250,7 @@ async function main() {
         const currentSongTitle = document.querySelector(".songinfo span").textContent.trim();
         const listItems = Array.from(document.querySelectorAll(".songList ul li"));
         let currentIndex = -1;
-
-        // Find the index of the currently playing song in the displayed list
         for (let i = 0; i < listItems.length; i++) {
-            // Compare the currently playing song title with the title in the list item's dataset
             if (listItems[i].dataset.title === currentSongTitle) {
                 currentIndex = i;
                 break;
@@ -270,7 +258,6 @@ async function main() {
         }
 
         if (currentIndex !== -1 && currentIndex < listItems.length - 1) {
-            // Play the next song in the list
             const nextItem = listItems[currentIndex + 1];
             const type = nextItem.dataset.type;
             const title = nextItem.dataset.title;
@@ -279,12 +266,10 @@ async function main() {
             if (type === 'youtube') {
                 playYoutubeSong(nextItem.dataset.videoId, title);
             } else {
-                // Update currFolder for regular songs
                 currFolder = folder ? `songs/${folder}` : currFolder;
                 playMusic(title);
             }
         } else if (listItems.length > 0 && (currentIndex === listItems.length - 1 || currentIndex === -1)) {
-            // Wrap around to the first song (or play the first song if nothing is playing/found)
             const firstItem = listItems[0];
             const type = firstItem.dataset.type;
             const title = firstItem.dataset.title;
@@ -293,18 +278,14 @@ async function main() {
             if (type === 'youtube') {
                 playYoutubeSong(firstItem.dataset.videoId, title);
             } else {
-                // Update currFolder for regular songs
                 currFolder = folder ? `songs/${folder}` : currFolder;
                 playMusic(title);
             }
         }
     });
-    
-    // ... (rest of the main function code below)
 
     document.querySelector(".range input").addEventListener("change", (e) => { currentSong.volume = parseInt(e.target.value) / 100; });
-    
-    // ... (rest of the main function code below)
+
     document.querySelector(".range input").addEventListener("change", (e) => { currentSong.volume = parseInt(e.target.value) / 100; });
 
     document.querySelector(".cardContainer").addEventListener("click", async (event) => {
@@ -320,17 +301,9 @@ async function main() {
     });
 }
 
-
-
-// ADD THIS CODE TO THE END OF YOUR EXISTING script.js FILE
-// DO NOT REPLACE ANYTHING - JUST ADD THESE FUNCTIONS
-
-// ==================== FILTER SYSTEM - ADD TO END OF script.js ====================
-
 let allFoldersData = {};
 let currentFilterFolder = 'all';
 
-// Get all folder names from the HTML cards
 function getAllFolderNames() {
     const cards = document.querySelectorAll('.cardContainer .card');
     const folderNames = Array.from(cards).map(card => card.dataset.folder);
@@ -338,7 +311,6 @@ function getAllFolderNames() {
     return [...folderNames, ...customFolders];
 }
 
-// Load all songs from all folders into memory
 async function loadAllSongsData() {
     const folders = getAllFolderNames();
     allFoldersData = {};
@@ -352,7 +324,6 @@ async function loadAllSongsData() {
                 type: 'youtube'
             }));
         } else {
-            // Regular songs from server
             try {
                 let a = await fetch(`./songs/${folder}/`);
                 if (a.ok) {
@@ -386,14 +357,12 @@ function displayFilteredSongs(folderName = 'all') {
     let songsToDisplay = [];
     
     if (folderName === 'all') {
-        // Show all songs from all folders
         Object.keys(allFoldersData).forEach(folder => {
             if (allFoldersData[folder]) {
                 songsToDisplay.push(...allFoldersData[folder]);
             }
         });
     } else {
-        // Show songs from specific folder
         songsToDisplay = allFoldersData[folderName] || [];
     }
     
@@ -439,7 +408,6 @@ function displayFilteredSongs(folderName = 'all') {
     attachAllSongClickListenersWithFolder();
 }
 
-// Filter songs by search text
 function filterSongsBySearch(searchQuery) {
     const query = searchQuery.toLowerCase().trim();
     const allListItems = document.querySelectorAll(".songList ul li");
@@ -461,14 +429,11 @@ function filterSongsBySearch(searchQuery) {
     });
 }
 
-// Create the filter dropdown UI
 function createFilterUI() {
     const folders = getAllFolderNames();
-    
-    // Check if filter already exists
+
     if (document.getElementById('folderFilter')) return;
-    
-    // This is the HTML for the filter container
+
     const filterHTML = `
         <div class="filter-container">
                         <h1>Sukoon Voices</h1>
@@ -480,26 +445,17 @@ function createFilterUI() {
             <input type="text" id="songSearchFilter" placeholder="Search songs...">
         </div>
     `;
-    
-    // *** CHANGE IS HERE ***
-    // Target the .spotifyPlaylists container itself
+
     const playlistContainer = document.querySelector('.spotifyPlaylists');
-    
-    // We will find the existing <h1> (e.g., 'Sukoon Voices') inside it first.
-    // If the <h1> exists, we insert the filterHTML after it.
+
     const heading = playlistContainer ? playlistContainer.querySelector('h1') : null;
 
     if (heading) {
-        // Insert the filter container AFTER the h1, but still inside the .spotifyPlaylists
         heading.insertAdjacentHTML('afterend', filterHTML);
     } 
-    // If there is no H1, you might want to insert it right at the beginning:
     else if (playlistContainer) {
         playlistContainer.insertAdjacentHTML('afterbegin', filterHTML);
     }
-    // *** END OF CHANGE ***
-    
-    // Add event listeners (assuming the filter was successfully inserted)
     if (document.getElementById('folderFilter')) {
         document.getElementById('folderFilter').addEventListener('change', (e) => {
             currentFilterFolder = e.target.value;
@@ -510,12 +466,9 @@ function createFilterUI() {
         document.getElementById('songSearchFilter').addEventListener('input', (e) => {
             filterSongsBySearch(e.target.value);
         });
-
-        // NEW JAVASCRIPT FOR MOBILE TOGGLE
         const filterContainer = document.querySelector('.filter-container');
         if (filterContainer) {
             filterContainer.addEventListener('click', (e) => {
-                // Only toggle if the click wasn't directly on the select/input field itself
                 if (window.innerWidth <= 800 && e.target.tagName !== 'SELECT' && e.target.tagName !== 'INPUT') {
                     filterContainer.classList.toggle('open');
                 }
@@ -524,7 +477,7 @@ function createFilterUI() {
 
     }
 }
-// NEW function with folder support - ye regular songs ke liye hai
+
 function attachAllSongClickListenersWithFolder() {
     document.querySelectorAll(".songList ul li").forEach(e => e.replaceWith(e.cloneNode(true)));
     document.querySelectorAll(".songList ul li").forEach(e => {
@@ -546,17 +499,14 @@ function attachAllSongClickListenersWithFolder() {
     });
 }
 
-// Initialize the filter system
 async function initializeFilterSystem() {
     await loadAllSongsData();
     createFilterUI();
     displayFilteredSongs('all');
 }
 
-// Override card container click to work with filter
 const originalCardContainerHandler = document.querySelector(".cardContainer");
 if (originalCardContainerHandler) {
-    // Wait for DOM to be ready, then override the click handler
     setTimeout(() => {
         const cardContainer = document.querySelector(".cardContainer");
         const newCardContainer = cardContainer.cloneNode(true);
@@ -566,21 +516,17 @@ if (originalCardContainerHandler) {
             const card = event.target.closest(".card");
             if (card) {
                 const folder = card.dataset.folder;
-                
-                // Update the filter dropdown if it exists
+
                 const filterSelect = document.getElementById('folderFilter');
                 if (filterSelect) {
                     filterSelect.value = folder;
                     currentFilterFolder = folder;
                 }
-                
-                // Check if it's a custom folder or regular folder
+
                 if (customSongs[folder]) {
                     loadCustomSongs(folder);
                 } else {
-                    // For regular folders, use getSongs and then display
                     await getSongs(folder);
-                    // If filter system is active, update it
                     if (filterSelect) {
                         displayFilteredSongs(folder);
                     }
@@ -590,7 +536,6 @@ if (originalCardContainerHandler) {
     }, 1000);
 }
 
-// Call initialization when page loads
 window.addEventListener('DOMContentLoaded', async () => {
     setTimeout(async () => {
         await initializeFilterSystem();
