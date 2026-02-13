@@ -83,16 +83,15 @@ body {
 }
 .heading {
     display: flex;
-    gap: 15px;
-    width: 100%;
-    padding-top: 14px;
-    padding: 23px 14px;
-    font-weight: bold;
     align-items: center;
-    font-size: 15px;
+    gap: 8px;              /* tighter spacing */
+    padding: 10px 12px;    /* compact */
+    font-weight: 600;
+    font-size: 14px;       /* cleaner sidebar scale */
 }
+
 .heading img {
-    width: 30px;
+    width: 18px;           /* proper icon size */
 }
 
 .library {
